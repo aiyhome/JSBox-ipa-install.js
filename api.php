@@ -5,6 +5,12 @@
         error( '令牌错误' );
     }
     
+    // 最少保留 1G 的硬盘空间
+    $disk_free_space = disk_free_space(__DIR__);
+    if($disk_free_space < 1073741824){
+        error( "服务器剩余硬盘空间不足，\n请等第二天系统自动释放后再试！\n若有条件，也可自行部署服务端！\n源码地址：\nhttps://github.com/meishixiu/JSBox-ipa-install.js" );
+    }
+    
     // 文件名
     $file_name = isset($_POST['filename']) ? $_POST['filename'] : $_FILES['file']['name'];
 
